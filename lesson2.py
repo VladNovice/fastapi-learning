@@ -1,9 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import uvicorn
-
 app = FastAPI()
-
 books = [
     {
         "id": 1,
@@ -16,14 +14,12 @@ books = [
         "author": "Хабиб",
     },
 ]
-
 @app.get("/books",
          tags=["Книги"],
          summary="Получить все книги"
          )
 def read_books():
     return books
-
 @app.get("/books/{book_id}",
          summary="Получить конкретную книгу")
 def get_book(book_id: int):
@@ -31,11 +27,9 @@ def get_book(book_id: int):
         if book["id"] == book_id:
             return book
     raise HTTPException(status_code=404, detail="Книга не найдена")
-
 class NewBook(BaseModel):
     title: str
     author: str
-
 @app.post("/books", tags=["Книги"])
 def create_book(new_book: NewBook):
     books.append({
@@ -44,7 +38,6 @@ def create_book(new_book: NewBook):
         "author": new_book.author,
     })
     
-
 if __name__ == "__main__": 
     uvicorn.run("lesson2:app", reload=True)  
 
