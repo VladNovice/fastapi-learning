@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import uvicorn
 
 
@@ -36,8 +36,8 @@ def get_book(book_id: int):
 
 
 class NewBook(BaseModel):
-    title: str
-    author: str
+    title: str = Field(max_length=3)
+    author: str = Field(max_length=3)
 
 @app.post("/books", tags=["Книги"])
 def create_book(new_book: NewBook):
@@ -47,7 +47,10 @@ def create_book(new_book: NewBook):
         "author": new_book.author,
     })
     return {"success": True, "message": "Книга успешно добавлена!"}
+
     
+
+
 
 if __name__ == "__main__": 
     uvicorn.run("lesson2:app", reload=True)  
