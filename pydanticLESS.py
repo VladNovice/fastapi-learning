@@ -32,13 +32,13 @@ def add_user(user: UserSchema):
     return {"ok": True, "msg": "Юзер добавлен"}
 
 @app.get("/users")
-def get_user():
-    return users
+def get_user() -> list[UserSchema]:
+    return users 
 
 
 
 
-class UserAgeSchema(UserSchema):
-    age: int = Field(ge=0, le=130)
+#class UserAgeSchema(UserSchema):
+#    age: int = Field(ge=0, le=130)
 
 
