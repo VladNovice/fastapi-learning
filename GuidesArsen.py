@@ -9,11 +9,11 @@ app = FastAPI()
 Guides = [
     {
         "theme": "Гормонально нейромедиаторная теория",
-        "text": "none, null",
+        "text": "текст гайда",
     },
     {
         "theme": "Гайд по тестостерону",
-        "author": "none, null",
+        "author": "текст гайда",
     },
 ]
 
