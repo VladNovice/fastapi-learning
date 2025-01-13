@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+from typing import Annotated
+from fastapi import FastAPI, Depends
 
-from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker
+from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from pydantic import BaseModel
 
 app = FastAPI()
 
@@ -13,6 +15,8 @@ async def get_session():
     async with new_session() as session:
         yield session
 
+
+SessionDep = Annotated[AsyncSession, Depends(get_session)]
 
 class Base(DeclarativeBase):
     pass
@@ -33,4 +37,24 @@ async def setup_database():
         await conn.run_sync(Base.metadata.create_all)
     return {"База успешно создана": True}
 
+class BookPostSchema(BaseModel):
+    title: str
+    author: str
 
+class BookSchema(BookPostSchema):
+    id: int
+
+
+@app.post("/books")
+async def add_book(data: BookPostSchema, session: SessionDep):
+    new_book = BookModel(
+        title=data.title,
+        author=data.author,
+    )
+    session.add(new_book)
+    await session.commit()
+    return {"ok": True}
+
+@app.get("/books")
+async def get_book():
+    pass
