@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "SQLFAST",
+            "database": "books.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
