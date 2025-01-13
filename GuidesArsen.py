@@ -12,7 +12,7 @@ Guides = [
         "text": "текст гайда",
     },
     {
-        "theme": "Гайд по тестостерону",
+        "theme": "Гайд",
         "author": "текст гайда",
     },
 ]
@@ -24,7 +24,7 @@ def get_book(theme: str):
     for guide in Guides:
         if guide["theme"] == theme:
             return guide
-    raise HTTPException(status_code=404, detail="Гайд не найдена")
+    raise HTTPException(status_code=404, detail="Гайд не найден")
 
 class GuidesCL(BaseModel):
     theme: str | None = Field(max_length=60)
