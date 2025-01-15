@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Response, Depends
 from authx import AuthX, AuthXConfig
 from pydantic import BaseModel
 app = FastAPI()
@@ -17,13 +17,14 @@ class UserLoginSchema(BaseModel):
     password: str
 
 @app.post("/login")
-def login(creds: UserLoginSchema):
+def login(creds: UserLoginSchema, response: Response):
     if creds.username == "test" and creds.password == "test":
         token = security.create_access_token(uid="12345")
+        response.set_cookie(config.JWT_ACCESS_COOKIE_NAME, token)
         return {"acces_token": token}
-    raise HTTPException(status_code=401, detail="Incorrest usaername or password")
+    raise HTTPException(status_code=401, detail="Incorrest username or password")
 
-@app.get("protected")
+@app.get("/protected", dependencies=[Depends(security.access_token_required)])
 def protected():
-    pass
+    return {"data": "TOP SECRET"}
 
