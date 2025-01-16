@@ -10,3 +10,7 @@ https://solvit.space/roadmaps/fastapi-interactive?utm_source=tg_bot_artemshumeik
 
 ## Курс на YouTube
 https://www.youtube.com/watch?v=JqfbfraMjW8&list=PLeLN0qH0-mCVQKZ8-W1LhxDcVlWtTALCS
+
+
+
+![изображение](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.aB0NZ5OBn1-5qPa9AWsgPgHaHa%26pid%3DApi&f=1&ipt=4f383b889c18f1923f75e9bbe60b8bf682f966e0370ff9cac020a13dae8ac536&ipo=images)
