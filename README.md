@@ -6,10 +6,11 @@ FastAPI — это фреймворк для создания лаконичны
 что называется, из коробки. Стоит он на плечах двух других фреймворков: работой с web в FastAPI занимается Starlette, а за валидацию отвечает Pydantic. 
 
 ## Интерактивный RoadMap
-https://solvit.space/roadmaps/fastapi-interactive?utm_source=tg_bot_artemshumeikobot&utm_medium=organic&utm_campaign=roadmap_fastapi
+![кликабельно](https://solvit.space/roadmaps/fastapi-interactive?utm_source=tg_bot_artemshumeikobot&utm_medium=organic&utm_campaign=roadmap_fastapi)
 
 ## Курс на YouTube
-https://www.youtube.com/watch?v=JqfbfraMjW8&list=PLeLN0qH0-mCVQKZ8-W1LhxDcVlWtTALCS
+![кликабельно](https://www.youtube.com/watch?v=JqfbfraMjW8&list=PLeLN0qH0-mCVQKZ8-W1LhxDcVlWtTALCS)
+
 
 
 
