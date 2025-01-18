@@ -1,7 +1,8 @@
-from fastapi import FastAPI, HTTPException, Response, Depends
+from fastapi import FastAPI, HTTPException, Response, Depends, BackgroundTasks
 from authx import AuthX, AuthXConfig
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
+import asyncio
 
 app = FastAPI()
 
@@ -54,7 +55,7 @@ class UserLoginSchema(BaseModel):
     password: str
 
 @app.post("/login")
-def login(creds: UserLoginSchema, response: Response):
+async def login(creds: UserLoginSchema, response: Response):
     if creds.username == "test" and creds.password == "test":
         token = security.create_access_token(uid="12345")
         response.set_cookie(config.JWT_ACCESS_COOKIE_NAME, token)
@@ -62,9 +63,16 @@ def login(creds: UserLoginSchema, response: Response):
     raise HTTPException(status_code=401, detail="Incorrest username or password")
 
 @app.get("/protected", dependencies=[Depends(security.access_token_required)])
-def protected():
+async def protected():
     return {"data": "TOP SECRET"}
 
-@app.get("/Гайд на сердце чемпиона")
+
 async def get_serchamp():
     return text
+
+@app.get("/Гайд на сердце чемпиона")
+async def some_serchamp(bg_tasks: BackgroundTasks):
+    bg_tasks.add_task(get_serchamp)
+    return {"message": await get_serchamp()}
+
+    
