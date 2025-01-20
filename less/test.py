@@ -20,4 +20,4 @@ async def create_task(task: Task):
     })
     return {"Задача успешно выполнена": True}
 
-@app.get
+# @app.get
