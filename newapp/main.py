@@ -14,3 +14,13 @@ async def upload_file(uploaded_file: UploadFile):
 
     with open(f"1_{filename}", "wb") as f:
         f.write(file.read())
+
+
+@app.post("/multipe_files")
+async def upload_files(uploaded_files: list[UploadFile]):
+    for uploaded_file in uploaded_files:
+        file = uploaded_file.file
+        filename = uploaded_file.filename
+
+        with open(f"1_{filename}", "wb") as f:
+           f.write(file.read())
