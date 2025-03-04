@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile
 
-from pydantic import BaseModel, Field
+from fastapi.responses import StreamingResponse, FileResponse
 
 
 app = FastAPI()
@@ -24,3 +24,8 @@ async def upload_files(uploaded_files: list[UploadFile]):
 
         with open(f"1_{filename}", "wb") as f:
            f.write(file.read())
+
+
+@app.get("/files/{filename}")
+async def get_file(filename: str):
+    return FileResponse(filename)
