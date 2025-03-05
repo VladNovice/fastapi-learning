@@ -29,3 +29,17 @@ async def upload_files(uploaded_files: list[UploadFile]):
 @app.get("/files/{filename}")
 async def get_file(filename: str):
     return FileResponse(filename)
+
+
+
+
+
+
+def iterfile(filename: str):
+    with open(filename, "r") as f:
+        while chunk := f.read(1024 * 1024):
+            yield chunk
+
+@app.get("/files/streaming/{filename}")
+async def get_streaming_file(filename: str):
+    return StreamingResponse(iterfile(filename), media_type="text/txt")
