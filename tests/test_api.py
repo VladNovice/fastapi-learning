@@ -6,7 +6,10 @@ from less.lesson2 import app
 
 @pytest.mark.asyncio
 async def test_get_books():
-    async with AsyncClient(transport=ASGITransport(app=app)) as ac:
+    async with AsyncClient(
+        transport=ASGITransport(app=app),
+        base_url="http://test"
+    ) as ac:
         res = await ac.get('/books')
         print(res)
 
